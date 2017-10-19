@@ -1,0 +1,17 @@
+type Customer {
+    CustomerName: String!
+    ContactName: String!
+    Address: String!
+    City: String!
+    PostalCode: String!
+    Country: String!
+}
+
+type query {
+    Customer(CustomerName: String): Customer
+    Customers: [Customer]
+}
+
+schema {
+    query: query
+}
