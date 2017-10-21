@@ -1,6 +1,8 @@
-var fs = require("fs");
-var csv = require("csv");
-var mongoose = require("mongoose");
+import fs = require('fs');
+import path = require('path');
+import csv = require('csv');
+import mongoose = require('mongoose');
+import Q = require('q');
 
 mongoose.connect('mongodb://localhost/Shop')
 mongoose.Promise = global.Promise;
@@ -16,8 +18,8 @@ var CustomerSchema =  new mongoose.Schema({
 
 var CustomerModel = mongoose.model('Customer', CustomerSchema);
 var raw = fs.readFileSync("./Customers.csv", "utf8");
-csv.parse(raw, (err, data) => {
-    data.forEach(function(element) {
+csv.parse(raw, (err: any, data: any) => {
+    data.forEach(function(element: any) {
         var customer = new CustomerModel({
             CustomerName: element[1],
             ContactName: element[2],
@@ -37,7 +39,7 @@ var CategorySchema = new mongoose.Schema({
 var CategoryModel = mongoose.model('Category', CategorySchema);
 raw = fs.readFileSync("./Category.csv", "utf8");
 csv.parse(raw, (err, data) => {
-    data.forEach(function(element) {
+    data.forEach(function(element: any) {
         var Category = new CategoryModel({
             CategoryName: element[1],
             Description: element[2],
@@ -56,7 +58,7 @@ var EmployeeSchema = new mongoose.Schema({
 var EmployeeModel = mongoose.model('Employee', CategorySchema);
 raw = fs.readFileSync("./Employees.csv", "utf8");
 csv.parse(raw, (err, data) => {
-    data.forEach(function(element) {
+    data.forEach(function(element: any) {
         var Employee = new EmployeeModel({
             LastName: element[1],
             FirstName: element[2],
@@ -75,7 +77,7 @@ var ShipperSchema = new mongoose.Schema({
 var ShipperModel = mongoose.model('Shipper', ShipperSchema);
 raw = fs.readFileSync("./Shipper.csv", "utf8");
 csv.parse(raw, (err, data) => {
-    data.forEach(function(element) {
+    data.forEach(function(element: any) {
         var Shipper = new ShipperModel({
             ShipperName: element[1],
             Phone: element[2],
@@ -96,7 +98,7 @@ var SupplierSchema = new mongoose.Schema({
 var SupplierModel = mongoose.model('Supplier', SupplierSchema);
 raw = fs.readFileSync("./Supplier.csv", "utf8");
 csv.parse(raw, (err, data) => {
-    data.forEach(function(element) {
+    data.forEach(function(element: any) {
         var Supplier = new SupplierModel({
             SupplierName: element[1],
             ContactName: element[2],
